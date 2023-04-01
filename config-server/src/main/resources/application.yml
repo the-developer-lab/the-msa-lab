@@ -1,0 +1,24 @@
+server:
+  port: 8888
+spring:
+  application:
+    name: spring-cloud-config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri:
+management:
+  server:
+    port: 18888
+  endpoints:
+    enabled-by-default: false
+    jmx:
+      exposure:
+        exclude: all
+        include: info, health
+  endpoint:
+    info:
+      enabled: true
+    health:
+      enabled: true
