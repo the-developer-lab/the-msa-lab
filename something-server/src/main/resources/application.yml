@@ -1,0 +1,23 @@
+server:
+  port: 9999
+spring:
+  application:
+    name: something-server
+  config:
+    import: optional:configserver:http://127.0.0.1:8888/
+management:
+  server:
+    port: 1${server.port}
+  endpoints:
+    enabled-by-default: false
+    jmx:
+      exposure:
+        include: info, health
+    web:
+      exposure:
+        include: info, health
+  endpoint:
+    info:
+      enabled: true
+    health:
+      enabled: true
