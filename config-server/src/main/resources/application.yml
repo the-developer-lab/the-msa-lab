@@ -7,7 +7,7 @@ spring:
     config:
       server:
         git:
-          uri:
+          uri: https://github.com/the-developer-lab/the-msa-lab-private-config
 management:
   server:
     port: 18888
@@ -15,7 +15,9 @@ management:
     enabled-by-default: false
     jmx:
       exposure:
-        exclude: all
+        include: info, health
+    web:
+      exposure:
         include: info, health
   endpoint:
     info:
