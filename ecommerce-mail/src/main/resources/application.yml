@@ -1,0 +1,7 @@
+server:
+  port: 18587
+spring:
+  profiles:
+    active: local
+  application:
+    name: ecommerce-mail

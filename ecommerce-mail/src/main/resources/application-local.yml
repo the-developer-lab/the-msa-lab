@@ -1,0 +1,47 @@
+spring:
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ujaekim012@gmail.com
+    password:
+  datasource:
+    hikari:
+      driver-class-name: org.h2.Driver
+      jdbc-url: jdbc:h2:mem:testdb
+      username: sa
+      password:
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    generate-ddl: true
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    open-in-view: false
+  h2:
+    console:
+      path: /h2-console
+      enabled: true
+      settings.trace: false
+      settings.web-allow-others: false
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+  task:
+    scheduling:
+      pool:
+        size: 1
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka
+
+mail-service:
+  mail:
+    auth-url-template: http://localhost:8081/users/registration/authorization?email=%s&authenticationCode=%s
+    outbox-scheduler:
+      fixed-rate: 10000
+      initial-delay: 10000
