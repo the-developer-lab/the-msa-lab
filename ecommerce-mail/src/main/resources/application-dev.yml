@@ -1,0 +1,12 @@
+spring:
+  mail:
+    host: ""
+    port: 12345
+    username: ""
+    password: ""
+  datasource:
+    hikari:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: mysql://${MYSQL_HOST:localhost}:3306/sample
+      username: root
+      password: passwd

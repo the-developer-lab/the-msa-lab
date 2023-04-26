@@ -1,0 +1,20 @@
+POST http://localhost:8081/users/registration
+Content-Type: application/json
+
+{
+  "username": "testname",
+  "nickname": "testname",
+  "email": "ujaekim012@gmail.com",
+  "password": "password",
+  "birthday": "2000-12-01",
+  "contactNumber": "010-1234-5678"
+}
+
+###
+POST http://localhost:8081/users/registration/authorization
+Content-Type: application/json
+
+{
+  "email": "",
+  "authenticationCode": ""
+}
