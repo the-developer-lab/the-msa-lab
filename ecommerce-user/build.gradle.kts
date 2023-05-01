@@ -26,7 +26,10 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-data-redis")
+    implementation("net.javacrumbs.shedlock:shedlock-spring:5.2.0")
+    implementation("net.javacrumbs.shedlock:shedlock-provider-jdbc-template:5.2.0")
     implementation("org.redisson:redisson-spring-boot-starter:3.20.0")
+
     runtimeOnly("com.mysql:mysql-connector-j:8.0.32")
     runtimeOnly("com.h2database:h2")
 

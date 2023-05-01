@@ -1,6 +1,6 @@
 package com.lab.mail.domain.template
 
-import com.lab.mail.domain.outbox.OutBoxFilterEntity
+import com.lab.mail.domain.outbox.MailOutBoxFilterEntity
 import com.lab.mail.domain.outbox.OutBoxFilterRepository
 import com.lab.mail.domain.outbox.OutBoxFilterStatus
 import org.springframework.beans.factory.annotation.Value
@@ -18,23 +18,26 @@ class MailSenderTemplate(
 ) {
 
     @Transactional
-    fun sendAuthorizeEmail(transactionId: String, email: String, authenticationCode: String) {
+    fun sendAuthorizeEmail(transactionId: String, email: String, authenticationCode: String): Boolean {
         val outBoxFilterEntity = outBoxFilterRepository.findByTransactionId(transactionId)
         if(outBoxFilterEntity == null) {
             val authorizeUrl = authorizeUrlTemplate.format(email, authenticationCode)
             mailSender.send(generateAuthenticationMailTemplateForm(email, authorizeUrl))
             outBoxFilterRepository.saveAndFlush(
-                OutBoxFilterEntity(
+                MailOutBoxFilterEntity(
                     transactionId = transactionId,
                     outboxFilterStatus = OutBoxFilterStatus.PROCESSED
                 )
             )
-            return
+            return true
         }
-        outBoxFilterRepository.findByTransactionId(transactionId)?.let {
-            if (it.isProcessed()) return@let
+        return outBoxFilterRepository.findByTransactionId(transactionId)?.let {
+            if (it.isProcessed()) {
+                return@let false
+            }
             outBoxFilterRepository.saveAndFlush(it.updateProcessedStatus())
-        }
+            return true
+        } ?: false
     }
 
     private fun generateAuthenticationMailTemplateForm(
