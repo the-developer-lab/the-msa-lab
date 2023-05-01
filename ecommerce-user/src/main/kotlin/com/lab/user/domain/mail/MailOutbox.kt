@@ -1,11 +1,17 @@
 package com.lab.user.domain.mail
 
-import java.time.LocalDateTime
+import com.lab.user.domain.mail.vo.MailOutboxStatus
+import com.lab.user.domain.mail.vo.MailOutboxType
+import com.lab.user.domain.mail.vo.Payload
+import com.lab.user.domain.mail.vo.PublishAt
+import com.lab.user.domain.mail.vo.TransactionAt
+import java.util.UUID
 
 data class MailOutbox(
-    var outboxStatus: OutboxStatus,
-    val mailPayload: MailPayload,
-    val mailType: MailType,
+    var mailOutboxStatus: MailOutboxStatus,
+    val payload: Payload,
+    val mailOutboxType: MailOutboxType,
     val transactionAt: TransactionAt,
-    var publishAt: LocalDateTime? = null,
+    var publishAt: PublishAt? = null,
+    var transactionId: String = UUID.randomUUID().toString(),
 )

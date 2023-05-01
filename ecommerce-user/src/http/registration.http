@@ -11,10 +11,10 @@ Content-Type: application/json
 }
 
 ###
-POST http://localhost:8081/users/registration/authorization
+POST http://localhost:8081/users/authentication
 Content-Type: application/json
 
 {
-  "email": "",
-  "authenticationCode": ""
+  "email": "ujaekim012@gmail.com",
+  "authenticationCode": "fb-b44e-4e7d-8474-5c09ffbb846d"
 }
