@@ -1,7 +1,7 @@
 package com.lab.user.application.port.out
 
-import com.lab.user.domain.User
+import com.lab.user.domain.user.User
 
-interface UserRegistrationPort {
+fun interface UserRegistrationPort {
     fun registry(user: User): Long
 }

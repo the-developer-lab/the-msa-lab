@@ -1,14 +1,14 @@
 package com.lab.user.application.port.`in`.command
 
-import com.lab.user.domain.Birthday
-import com.lab.user.domain.ContactNumber
-import com.lab.user.domain.Email
-import com.lab.user.domain.Nickname
-import com.lab.user.domain.Password
-import com.lab.user.domain.PasswordExpireAt
-import com.lab.user.domain.User
-import com.lab.user.domain.UserStatus
-import com.lab.user.domain.Username
+import com.lab.user.domain.user.User
+import com.lab.user.domain.user.vo.Birthday
+import com.lab.user.domain.user.vo.ContactNumber
+import com.lab.user.domain.user.vo.Email
+import com.lab.user.domain.user.vo.Nickname
+import com.lab.user.domain.user.vo.Password
+import com.lab.user.domain.user.vo.PasswordExpireAt
+import com.lab.user.domain.user.vo.UserStatus
+import com.lab.user.domain.user.vo.Username
 import org.springframework.security.crypto.password.PasswordEncoder
 import java.time.LocalDate
 import java.time.ZoneId
@@ -23,7 +23,7 @@ data class UserRegistrationCommand(
     val contactNumber: String,
     val userStatus: String,
 ) {
-    fun toUser(passwordEncoder: PasswordEncoder): User =
+    fun toDomainModel(passwordEncoder: PasswordEncoder): User =
         User(
             Username(this.username),
             Nickname(this.nickname),

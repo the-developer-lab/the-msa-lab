@@ -1,6 +1,7 @@
 package com.lab.user.adapter.out.persistence.user
 
-import com.lab.user.domain.User
+import com.lab.user.domain.user.User
+import com.lab.user.domain.user.vo.UserStatus
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
@@ -24,6 +25,11 @@ class UserEntity(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long? = null,
 ) {
+    fun changeActiveStatus(): UserEntity {
+        this.userStatus = UserStatus.ACTIVE.name
+        return this
+    }
+
     constructor(user: User) : this(
         user.username.username,
         user.nickname.nickname,
