@@ -1,4 +1,4 @@
-package com.lab.user.adapter.out.scheduler
+package com.lab.user.application.scheduler
 
 import com.lab.user.application.port.out.MailOutBoxReadPayloadPort
 import com.lab.user.application.port.out.PostRegistrationPublishPort
@@ -13,10 +13,7 @@ class MailOutboxPostScheduler(
     private val postRegistrationPublishPort: PostRegistrationPublishPort,
 ) {
 
-    @Scheduled(
-        fixedDelayString = "\${user-service.mail.outbox-scheduler.fixed-rate}",
-        initialDelayString = "\${user-service.mail.outbox-scheduler.initial-delay}",
-    )
+    @Scheduled(cron = "\${user-service.mail.outbox-scheduler.cron}")
     @SchedulerLock(name = "processOutboxMessage", lockAtMostFor = "15s", lockAtLeastFor = "15s")
     fun processOutboxMessage() {
         val mailPayloads = mailOutBoxReadPayloadPort.readAllPayloads()

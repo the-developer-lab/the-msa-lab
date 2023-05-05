@@ -34,9 +34,7 @@ dependencies {
     runtimeOnly("com.h2database:h2")
 
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
-    implementation("org.springframework.boot:spring-boot-starter-mail")
     implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
-    implementation("net.jodah:expiringmap:0.5.10")
     implementation("com.auth0:java-jwt:4.3.0")
 
     implementation("org.jetbrains.kotlin:kotlin-reflect")

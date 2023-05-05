@@ -4,5 +4,9 @@ enum class UserStatus {
     NOT_AUTHORIZE,
     ACTIVE,
     DORMANCY,
-    LEAVE,
+    LEAVE
+    ;
+
+    fun isActive(): Boolean =
+        this == ACTIVE
 }

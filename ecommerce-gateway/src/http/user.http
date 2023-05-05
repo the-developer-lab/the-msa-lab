@@ -1,0 +1,11 @@
+POST localhost:8000/ecommerce-user/users/registration
+Content-Type: application/json
+
+{
+  "username": "testname",
+  "nickname": "testname",
+  "email": "ujaekim012@gmail.com",
+  "password": "password",
+  "birthday": "2000-12-01",
+  "contactNumber": "010-1234-5678"
+}

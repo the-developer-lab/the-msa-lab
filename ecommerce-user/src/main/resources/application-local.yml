@@ -34,10 +34,11 @@ eureka:
     fetch-registry: true
     service-url:
       defaultZone: http://127.0.0.1:8761/eureka
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
 
 user-service:
   mail:
     auth-url-template: http://localhost:8081/users/registration/authorization?email=%s&authenticationCode=%s
     outbox-scheduler:
-      fixed-rate: 10000
-      initial-delay: 10000
+      cron: "-"

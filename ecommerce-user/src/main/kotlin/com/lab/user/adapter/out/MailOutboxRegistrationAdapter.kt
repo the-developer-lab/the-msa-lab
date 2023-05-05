@@ -5,10 +5,10 @@ import com.lab.user.adapter.out.persistence.mail.MailOutBoxRepository
 import com.lab.user.adapter.out.persistence.mail.MailOutboxEntity
 import com.lab.user.application.port.out.MailOutBoxRegistrationPort
 import com.lab.user.domain.mail.MailOutbox
-import org.springframework.stereotype.Component
+import com.lab.user.global.annotation.Adapter
 import org.springframework.transaction.annotation.Transactional
 
-@Component
+@Adapter
 class MailOutboxRegistrationAdapter(
     private val mailOutBoxRepository: MailOutBoxRepository,
     private val objectMapper: ObjectMapper,
