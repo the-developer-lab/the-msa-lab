@@ -4,7 +4,7 @@ Content-Type: application/json
 {
   "username": "testusername",
   "nickname": "testnickname",
-  "email": "testname@mockemail.com",
+  "email": "",
   "password": "password",
   "birthday": "2000-12-01",
   "contactNumber": "010-1234-5678"
@@ -15,8 +15,8 @@ POST http://localhost:8081/users/authentication
 Content-Type: application/json
 
 {
-  "email": "testname@mockemail.com",
-  "authenticationCode": "88-6cbd-47dd-8077-4f0f37bbfd27"
+  "email": "",
+  "authenticationCode": ""
 }
 
 ###
