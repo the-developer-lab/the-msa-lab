@@ -4,8 +4,32 @@ Content-Type: application/json
 {
   "username": "testname",
   "nickname": "testname",
-  "email": "ujaekim012@gmail.com",
+  "email": "",
   "password": "password",
   "birthday": "2000-12-01",
   "contactNumber": "010-1234-5678"
 }
+
+###
+POST http://localhost:8000/ecommerce-user/users/authentication
+Content-Type: application/json
+
+{
+  "email": "",
+  "authenticationCode": ""
+}
+
+###
+POST http://localhost:8000/ecommerce-user/users/login
+Content-Type: application/json
+
+{
+  "username": "testname",
+  "password": "password"
+}
+> {% client.global.set('access_token', response.body.accessToken); %}
+
+###
+GET http://localhost:8000/ecommerce-user/users/details
+Authorization: Bearer {{access_token}}
+Content-Type: application/json
