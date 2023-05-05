@@ -18,13 +18,14 @@ repositories {
 extra["springCloudVersion"] = "2022.0.2"
 
 dependencies {
-    implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.springframework.cloud:spring-cloud-starter-gateway")
     implementation("org.springframework.boot:spring-boot-starter-webflux")
     implementation("org.springframework.boot:spring-boot-starter-data-redis-reactive")
-    implementation("io.netty:netty-resolver-dns-native-macos:4.1.90.Final:osx-aarch_64")
     implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
+    implementation("org.jetbrains.kotlin:kotlin-reflect")
+    implementation("io.netty:netty-resolver-dns-native-macos:4.1.90.Final:osx-aarch_64")
     implementation("io.github.microutils:kotlin-logging-jvm:3.0.5")
+    implementation("com.auth0:java-jwt:4.3.0")
 
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
     testImplementation("org.springframework.boot:spring-boot-starter-test")

@@ -1,6 +1,32 @@
 server:
   port: 8000
 
+spring:
+  application:
+    name: ecommerce-api-gateway
+  cloud:
+    gateway:
+      default-filters:
+        - name: LoggingFilter
+          args:
+            baseMessage: Spring Cloud Gateway Logging Filter
+            preLogger: true
+            postLogger: true
+      routes:
+        - id: api-server-router
+          uri: lb://ECOMMERCE-USER
+          predicates:
+            - Path=/ecommerce-user/**
+          filters:
+            - name: JwtFilter
+              args:
+                baseMessage: Spring Cloud Gateway Jwt Filter
+                excludePaths:
+                  - /ecommerce-user/users/authentication
+                  - /ecommerce-user/users/registration
+                  - /ecommerce-user/users/login
+            - RewritePath=/ecommerce-user/(?<segment>.*), /$\{segment}
+
 eureka:
   client:
     register-with-eureka: true
@@ -9,25 +35,3 @@ eureka:
       defaultZone: http://127.0.0.1:8761/eureka
   instance:
     instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
-
-spring:
-  application:
-    name: ecommerce-api-gateway
-  cloud:
-    gateway:
-      default-filters:
-        - name: GlobalFilter
-          args:
-            baseMessage: Spring Cloud Gateway Global Filter
-            preLogger: true
-            postLogger: true
-      routes:
-        - id: ecommerce-user
-          uri: lb://ECOMMERCE-USER
-          predicates:
-            - Path=/ecommerce-user/**
-          filters:
-             - CustomFilter
-             - RewritePath=/ecommerce-user/(?<segment>.*), /$\{segment}
-#            - AddRequestHeader=ecommerce-request=header
-#            - AddResponseHeader=ecommerce-response-header

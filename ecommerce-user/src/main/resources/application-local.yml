@@ -41,4 +41,5 @@ user-service:
   mail:
     auth-url-template: http://localhost:8081/users/registration/authorization?email=%s&authenticationCode=%s
     outbox-scheduler:
-      cron: "-"
+      cron: "*/10 * * * * *"
+      #      cron: "-"
