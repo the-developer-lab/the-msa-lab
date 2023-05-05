@@ -11,7 +11,7 @@ class UserRegistrationAuthenticationAdapter(
 ) : UserRegistrationAuthenticationPort {
 
     override fun registryAuthenticationCode(email: String): String {
-        val authenticationCode = UUID.randomUUID().toString().substring(6)
+        val authenticationCode = UUID.randomUUID().toString()
         redisTemplate.opsForValue().set(email, authenticationCode)
         return authenticationCode
     }

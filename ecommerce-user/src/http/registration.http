@@ -2,9 +2,9 @@ POST http://localhost:8081/users/registration
 Content-Type: application/json
 
 {
-  "username": "testname",
-  "nickname": "testname",
-  "email": "ujaekim012@gmail.com",
+  "username": "testusername",
+  "nickname": "testnickname",
+  "email": "testname@mockemail.com",
   "password": "password",
   "birthday": "2000-12-01",
   "contactNumber": "010-1234-5678"
@@ -15,6 +15,15 @@ POST http://localhost:8081/users/authentication
 Content-Type: application/json
 
 {
-  "email": "ujaekim012@gmail.com",
-  "authenticationCode": "fb-b44e-4e7d-8474-5c09ffbb846d"
+  "email": "testname@mockemail.com",
+  "authenticationCode": "88-6cbd-47dd-8077-4f0f37bbfd27"
+}
+
+###
+POST http://localhost:8081/login
+Content-Type: application/json
+
+{
+  "username": "testusername",
+  "password": "password"
 }

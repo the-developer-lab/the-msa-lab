@@ -1,6 +1,7 @@
 package com.lab.user.global.aspect
 
 import com.lab.user.global.annotation.DistributedLock
+import com.lab.user.global.error.DistributedLockTimeOutException
 import org.aspectj.lang.ProceedingJoinPoint
 import org.aspectj.lang.annotation.Around
 import org.aspectj.lang.annotation.Aspect
@@ -54,7 +55,7 @@ class DistributedLockAspect(
                     distributedLockAnnotation.timeUnit
                 )
             ) {
-                throw RuntimeException("lock timeout")
+                throw DistributedLockTimeOutException()
             }
             joinPoint.proceed()
         } finally {
