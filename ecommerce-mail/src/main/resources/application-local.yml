@@ -2,8 +2,8 @@ spring:
   mail:
     host: smtp.gmail.com
     port: 587
-    username: ujaekim012@gmail.com
-    password: qzsfkyxytbrlyopo
+    username: 
+    password: 
   datasource:
     hikari:
       driver-class-name: com.mysql.cj.jdbc.Driver
