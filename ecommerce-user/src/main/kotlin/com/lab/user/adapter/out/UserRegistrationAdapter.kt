@@ -4,11 +4,13 @@ import com.lab.user.adapter.out.persistence.user.UserEntity
 import com.lab.user.adapter.out.persistence.user.UserRepository
 import com.lab.user.application.port.out.UserRegistrationPort
 import com.lab.user.domain.user.User
+import com.lab.user.global.annotation.Adapter
 import com.lab.user.global.annotation.DistributedLock
-import org.springframework.stereotype.Component
+import com.lab.user.global.error.DuplicatedUserSaveException
+import com.lab.user.global.error.InvalidUserSaveException
 import org.springframework.transaction.annotation.Transactional
 
-@Component
+@Adapter
 class UserRegistrationAdapter(
     private val userRepository: UserRepository,
 ) : UserRegistrationPort {
@@ -20,12 +22,12 @@ class UserRegistrationAdapter(
         val userEntity = UserEntity(user)
         return userRepository.saveAndFlush(userEntity)
             ?.id
-            ?: throw IllegalArgumentException()
+            ?: throw InvalidUserSaveException()
     }
 
     private fun validateUserRegistrationInformation(user: User) {
         if (userRepository.existsByUsernameOrEmail(user.username.username, user.email.email)) {
-            throw RuntimeException("invalid user data")
+            throw DuplicatedUserSaveException()
         }
     }
 }

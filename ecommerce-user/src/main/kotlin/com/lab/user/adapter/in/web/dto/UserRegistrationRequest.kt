@@ -4,11 +4,12 @@ import com.lab.user.application.port.`in`.command.UserRegistrationCommand
 import com.lab.user.domain.user.vo.UserStatus
 import jakarta.validation.constraints.Email
 import jakarta.validation.constraints.NotBlank
+import jakarta.validation.constraints.NotNull
 import org.hibernate.validator.constraints.Length
 import java.time.LocalDate
 import java.time.ZoneId
 
-class UserRegistrationRequest(
+data class UserRegistrationRequest(
     @get:NotBlank
     var username: String,
 
@@ -22,7 +23,7 @@ class UserRegistrationRequest(
     @get:NotBlank
     var password: String,
 
-    @get:NotBlank
+    @get:NotNull
     var birthday: LocalDate,
 
     @get:NotBlank

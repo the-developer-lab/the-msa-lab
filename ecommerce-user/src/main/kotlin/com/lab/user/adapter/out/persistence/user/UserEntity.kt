@@ -1,7 +1,14 @@
 package com.lab.user.adapter.out.persistence.user
 
 import com.lab.user.domain.user.User
+import com.lab.user.domain.user.vo.Birthday
+import com.lab.user.domain.user.vo.ContactNumber
+import com.lab.user.domain.user.vo.Email
+import com.lab.user.domain.user.vo.Nickname
+import com.lab.user.domain.user.vo.Password
+import com.lab.user.domain.user.vo.PasswordExpireAt
 import com.lab.user.domain.user.vo.UserStatus
+import com.lab.user.domain.user.vo.Username
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
@@ -40,4 +47,16 @@ class UserEntity(
         user.contactNumber.contactNumber,
         user.userStatus.name
     )
+
+    fun toDomainModel(): User =
+        User(
+            username = Username(username),
+            nickname = Nickname(nickname),
+            email = Email(email),
+            password = Password(password),
+            passwordExpireAt = PasswordExpireAt(passwordExpireAt),
+            birthday = Birthday(birthday),
+            contactNumber = ContactNumber.createByDelimiter(contactNumber),
+            userStatus = UserStatus.valueOf(userStatus)
+        )
 }
